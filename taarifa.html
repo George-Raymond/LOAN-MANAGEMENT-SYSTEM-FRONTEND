@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fomu ya Ombi la Mkopo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Loading UI Styles */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+      display: none; /* Hidden by default */
+    }
+
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .error {
+      border-color: red !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Tafadhali subiri kidogo...</div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Logo -->
+    <div class="logo">
+      <div class="main-text">Precious</div>
+      <div class="established">IFAKARA 2025</div>
+      <div class="sub-text">Company Limited</div>
+    </div>
+    <h3>Menyu Kuu</h3>
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Dashibodi</a></li>
+      <li><a href="taarifa.html" class="active"><i class="fas fa-user-friends"></i> Taarifa</a></li>
+      <li><a href="kutuhusu.html"><i class="fas fa-info-circle"></i> Kutuhusu</a></li>
+      <li><a href="register.html"><i class="fas fa-user-plus"></i> Jisajili</a></li>
+      <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+      <li><a href="fetch_clients.html"><i class="fas fa-users"></i> Wateja</a></li>
+      <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- TAARIFA YA MKOPAJI -->
+    <div class="form-section">
+      <h3>TAARIFA YA MKOPAJI</h3>
+      <div class="form-group">
+        <label for="full_name">Jina Kamili</label>
+        <input type="text" id="full_name" name="full_name" required>
+      </div>
+      <div class="form-group">
+        <label for="nida_number">Namba ya NIDA</label>
+        <input type="text" id="nida_number" name="nida_number" required>
+      </div>
+      <div class="form-group">
+        <label for="residence_address">Mahali anapoishi</label>
+        <input type="text" id="residence_address" name="residence_address" required>
+      </div>
+      <div class="form-group">
+        <label for="street">Mtaa</label>
+        <input type="text" id="street" name="street" required>
+      </div>
+      <div class="form-group">
+        <label for="ward">Kata</label>
+        <input type="text" id="ward" name="ward" required>
+      </div>
+      <div class="form-group">
+        <label for="district">Wilaya</label>
+        <input type="text" id="district" name="district" required>
+      </div>
+      <div class="form-group">
+        <label for="region">Mkoa</label>
+        <input type="text" id="region" name="region" required>
+      </div>
+      <div class="form-group">
+        <label for="marital_status">Hali ya ndoa</label>
+        <select id="marital_status" name="marital_status" required>
+          <option value="single">single</option>
+          <option value="married">married</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="residence_type">Hali umiliki wa mahali anapoishi</label>
+        <select id="residence_type" name="residence_type" required>
+          <option value="owner">owner</option>
+          <option value="tenant">tenant</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="phone_number">Namba ya simu</label>
+        <input type="text" id="phone_number" name="phone_number" required>
+      </div>
+      <div class="form-group">
+        <label for="occupation">Kazi anayofanya mkopaji</label>
+        <input type="text" id="occupation" name="occupation" required>
+      </div>
+      <div class="form-group">
+        <label for="workplace">Kituo cha kazi</label>
+        <input type="text" id="workplace" name="workplace" required>
+      </div>
+      <div class="form-group">
+        <label for="workplace_street">Mtaa/ Kitongoji</label>
+        <input type="text" id="workplace_street" name="workplace_street" required>
+      </div>
+      <div class="form-group">
+        <label for="workplace_ward">Kata</label>
+        <input type="text" id="workplace_ward" name="workplace_ward" required>
+      </div>
+      <div class="form-group">
+        <label for="workplace_district">Wilaya</label>
+        <input type="text" id="workplace_district" name="workplace_district" required>
+      </div>
+      <div class="form-group">
+        <label for="workplace_region">Mkoa</label>
+        <input type="text" id="workplace_region" name="workplace_region" required>
+      </div>
+      <div class="form-group">
+        <label for="house_number">Namba ya Nyumba</label>
+        <input type="text" id="house_number" name="house_number" required>
+      </div>
+      <div class="form-group">
+        <label for="passport_mkopaji">Picha ya Mkopaji</label>
+        <input type="file" id="passport_mkopaji" name="passport_mkopaji" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label for="number_of_children">Idadi ya watoto</label>
+        <input type="number" id="number_of_children" name="number_of_children" required>
+      </div>
+      <div class="form-group">
+        <label for="signature">Sahihi/ Dole gumba</label>
+        <input type="text" id="signature" name="signature" required>
+      </div>
+    </div>
+
+    <!-- TAARIFA BINAFSI ZA MDHAMINI -->
+    <div class="form-section">
+      <h3>TAARIFA BINAFSI ZA MDHAMINI</h3>
+      <div class="form-group">
+        <label for="guarantor_name">Jina Kamili</label>
+        <input type="text" id="guarantor_name" name="guarantor_name" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_residence_address">Mahali anapoishi</label>
+        <input type="text" id="guarantor_residence_address" name="guarantor_residence_address" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_street">Mtaa</label>
+        <input type="text" id="guarantor_street" name="guarantor_street" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_ward">Kata</label>
+        <input type="text" id="guarantor_ward" name="guarantor_ward" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_district">Wilaya</label>
+        <input type="text" id="guarantor_district" name="guarantor_district" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_region">Mkoa</label>
+        <input type="text" id="guarantor_region" name="guarantor_region" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_marital_status">Hali ya ndoa</label>
+        <select id="guarantor_marital_status" name="guarantor_marital_status" required>
+          <option value="single">single</option>
+          <option value="married">married</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_residence_address">Hali ya umiliki wa makazi</label>
+        <select id="guarantor_residence_address" name="guarantor_residence_address" required>
+          <option value="owner">owner</option>
+          <option value="tenant">tenant</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_phone">Namba ya simu</label>
+        <input type="text" id="guarantor_phone" name="guarantor_phone" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_occupation">Kazi anayofanya mdhamini</label>
+        <input type="text" id="guarantor_occupation" name="guarantor_occupation" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_workplace">Kituo cha kazi</label>
+        <input type="text" id="guarantor_workplace" name="guarantor_workplace" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_workplace_street">Mtaa/ Kitongoji</label>
+        <input type="text" id="guarantor_workplace_street" name="guarantor_workplace_street" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_workplace_ward">Kata</label>
+        <input type="text" id="guarantor_workplace_ward" name="guarantor_workplace_ward" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_workplace_district">Wilaya</label>
+        <input type="text" id="guarantor_workplace_district" name="guarantor_workplace_district" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_workplace_region">Mkoa</label>
+        <input type="text" id="guarantor_workplace_region" name="guarantor_workplace_region" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_house_number">Namba ya Nyumba</label>
+        <input type="text" id="guarantor_house_number" name="guarantor_house_number" required>
+      </div>
+      <div class="form-group">
+        <label for="passport_mdhamini">Picha ya Mdhamini</label>
+        <input type="file" id="passport_mdhamini" name="passport_mdhamini" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label for="guarantor_signature">Sahihi/ Dole gumba</label>
+        <input type="text" id="guarantor_signature" name="guarantor_signature" required>
+      </div>
+    </div>
+
+    <!-- TAARIFA ZA UONGOZI WA SERIKALI ZA MITAA -->
+    <div class="form-section">
+      <h3>TAARIFA ZA UONGOZI WA SERIKALI ZA MITAA</h3>
+      <div class="form-group">
+        <label for="local_leader_name">Jina la Mwenyekiti/ Mtendaji</label>
+        <input type="text" id="local_leader_name" name="local_leader_name" required>
+      </div>
+      <div class="form-group">
+        <label for="local_leader_street">Mtaa</label>
+        <input type="text" id="local_leader_street" name="local_leader_street" required>
+      </div>
+      <div class="form-group">
+        <label for="local_leader_ward">Kata</label>
+        <input type="text" id="local_leader_ward" name="local_leader_ward" required>
+      </div>
+      <div class="form-group">
+        <label for="local_leader_contact">Namba ya simu</label>
+        <input type="text" id="local_leader_contact" name="local_leader_contact" required>
+      </div>
+      <div class="form-group">
+        <label for="local_leader_signature">Sahihi</label>
+        <input type="text" id="local_leader_signature" name="local_leader_signature" required>
+      </div>
+      <div class="form-group">
+        <label for="local_leader_stamp">Muhuri wa Serikali za Mitaa</label>
+        <input type="file" id="local_leader_stamp" name="local_leader_stamp" accept="image/*,.pdf" required>
+      </div>
+    </div>
+
+    <!-- TAMKO LA MKOPAJI -->
+    <div class="form-section">
+      <h3>TAMKO LA MKOPAJI</h3>
+      <div class="form-group">
+        <label for="borrower_name">Mimi(Mkopaji)</label>
+        <input type="text" id="borrower_name" name="borrower_name" required>
+      </div>
+      <div class="form-group">
+        <p>
+          NATHIBITISHA KUWA TAARIFA ZOTE NILIZOTOA HAPO JUU NI ZA KWELI. ENDAPO KUTATOKEA UDANGANYIFU WOWOTE SHERIA ICHUKUE NAFASI YAKE NA NIPO TAYARI DHAMANA ZANGU ZICHUKULIWE ILI KUFIDIA DENI LA MKOPO HUSIKA.
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="officer_name">Jina la Afisa Aliyetembelea</label>
+        <input type="text" id="officer_name" name="officer_name" required>
+      </div>
+      <div class="form-group">
+        <label for="officer_signature">Sahihi ya Afisa</label>
+        <input type="text" id="officer_signature" name="officer_signature" required>
+      </div>
+      <div class="form-group">
+        <label for="visit_date">Tarehe</label>
+        <input type="date" id="visit_date" name="visit_date" required>
+      </div>
+    </div>
+
+<!-- MKATABA WA MKOPO -->
+<div class="form-section">
+    <h3>MKATABA WA MKOPO</h3>
+    <div class="form-group">
+      <label for="full_name">Jina la Mkopaji</label>
+      <input type="text" id="full_name" name="full_name" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Jinsia</label>
+      <select id="gender" name="gender" required>
+        <option value="male">Mwanaume</option>
+        <option value="female">Mwanamke</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="landlord_name">Jina la Mwenye Nyumba </label>
+      <input type="text" id="landlord_name" name="landlord_name" required>
+    </div>
+    <div class="form-group">
+      <label for="collateral_description">Dhamana ya Mkopo</label>
+      <textarea id="collateral_description" name="collateral_description" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="borrower_signature_agreement">Sahihi/ Dole gumba</label>
+      <input type="text" id="borrower_signature_agreement" name="borrower_signature_agreement" required>
+    </div>
+    <div class="form-group">
+      <label for="collateral_item_1">A. Taja mali yako na thamani yake</label>
+      <input type="text" id="collateral_item_1" name="collateral_item_1" required>
+      <input type="number" id="collateral_value_1" name="collateral_value_1" placeholder="Thamani yake ni Tshs" required>
+    </div>
+    <div class="form-group">
+      <label for="collateral_item_2">A. Taja mali yako na thamani yake</label>
+      <input type="text" id="collateral_item_2" name="collateral_item_2">
+      <input type="number" id="collateral_value_2" name="collateral_value_2" placeholder="Thamani yake ni Tshs">
+    </div>
+    <div class="form-group">
+      <label for="collateral_item_3">B. Taja mali yako na thamani yake</label>
+      <input type="text" id="collateral_item_3" name="collateral_item_3">
+      <input type="number" id="collateral_value_3" name="collateral_value_3" placeholder="Thamani yake ni Tshs">
+    </div>
+    <div class="form-group">
+      <label for="collateral_item_4">C. Taja mali yako na thamani yake</label>
+      <input type="text" id="collateral_item_4" name="collateral_item_4">
+      <input type="number" id="collateral_value_4" name="collateral_value_4" placeholder="Thamani yake ni Tshs">
+    </div>
+  </div>
+  
+  <!-- UDHAMINI WA MUME/ MKE AU NDUGU -->
+  <div class="form-section">
+    <h3>UDHAMINI WA MUME/ MKE AU NDUGU</h3>
+    <div class="form-group">
+      <label for="spouse_guarantor_name">Mimi</label>
+      <input type="text" id="spouse_guarantor_name" name="spouse_guarantor_name" required>
+    </div>
+    <div class="form-group">
+      <label for="spouse_guarantor_relationship">Mume/ Mke au ndugu wa</label>
+      <input type="text" id="spouse_guarantor_relationship" name="spouse_guarantor_relationship" required>
+    </div>
+    <div class="form-group">
+      <p>
+        Nakiri kwamba vitu vilivyoorodheshwa hapo juu kama dhamana ni mali yake/ mali yetu. Nakubali kuwa endapo atashindwa kurejesha mkopo huu kwa utaratibu uliowekwa na PRECIOUS INVESTMENT CO.LTD, mali hizo zikamatwe na kuuzwa ili kulipa deni hilo.
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="spouse_guarantor_signature">Sahihi</label>
+      <input type="text" id="spouse_guarantor_signature" name="spouse_guarantor_signature" required>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_name">Jina la Mdhamini</label>
+      <input type="text" id="guarantor_name" name="guarantor_name" required>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_gender">Jinsia</label>
+      <select id="guarantor_gender" name="guarantor_gender" required>
+        <option value="male">Mwanaume</option>
+        <option value="female">Mwanamke</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_residence">Mahali anapoishi</label>
+      <input type="text" id="guarantor_residence" name="guarantor_residence" required>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_phone">Namba ya simu</label>
+      <input type="text" id="guarantor_phone" name="guarantor_phone" required>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_relationship">Uhusiano na Mkopaji</label>
+      <input type="text" id="guarantor_relationship" name="guarantor_relationship" required>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_residence_address">Je, ni Mmiliki/ Mpangaji?</label>
+      <select id="guarantor_residence_address" name="guarantor_residence_address" required>
+        <option value="owner">owner</option>
+        <option value="tenant">tenant</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_collateral">Dhamana ya Mdhamini</label>
+      <textarea id="guarantor_collateral" name="guarantor_collateral" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_signature_thumbprint">Sahihi/ Dole gumba</label>
+      <input type="text" id="guarantor_signature_thumbprint" name="guarantor_signature_thumbprint" required>
+    </div>
+    <div class="form-group">
+      <label for="loan_amount">Mkopo wa Shilingi</label>
+      <input type="text" id="loan_amount" name="loan_amount" required>
+    </div>
+    <div class="form-group">
+      <label for="loan_duration">Utakopeshwa ndani ya siku</label>
+      <input type="number" id="loan_duration" name="loan_duration" required>
+    </div>
+    <div class="form-group">
+      <label for="loan_interest_rate">Kiasi cha Tshs. kwa siku</label>
+      <input type="text" id="loan_interest_rate" name="loan_interest_rate" required>
+    </div>
+    <div class="form-group">
+      <label for="total_loan_amount">Jumla ya mkopo na riba ni Tshs.</label>
+      <input type="text" id="total_loan_amount" name="total_loan_amount" required>
+    </div>
+    <div class="form-group">
+      <label for="repayment_start_date">Tarehe ya kuanza marejesho</label>
+      <input type="date" id="repayment_start_date" name="repayment_start_date" required>
+    </div>
+    <div class="form-group">
+      <label for="repayment_end_date">Tarehe ya kumaliza</label>
+      <input type="date" id="repayment_end_date" name="repayment_end_date" required>
+    </div>
+  </div>
+  
+  <!-- MASHARTI YA MKOPO -->
+  <div class="form-section">
+    <h3>MASHARTI YA MKOPO</h3>
+    <div class="form-group">
+      <p>
+        <strong>Masharti:</strong>
+        <ol>
+          <li>MTEJA ATATAKIWA KUWA NA KITAMBULISHO CHA KUPIGA KURA NA PASSPORT SIZE MOJA.</li>
+          <li>MKATABA WA MKOPO UTAVUNJIKA BAADA YA SIKU MBILI KUTOREJESHWA KIASI CHA MKOPO KILICHOKUBALIWA AMBAPO DHAMANA ZILIZOWEKWA ZITACHUKULIWA KUFIDIA DENI LA MKOPO.</li>
+          <li>MUDA WA MAREJESHO NI KUANZIA SAA 3:00 ASUBUHI HADI SAA 10:00 JIONI.</li>
+          <li>MAREJESHO YAKICHELEWESHWA KUFIKA OFISINI KWA MUDA HUSIKA, FAINI NI TSHS. 2,000/= (ELFU MBILI TU).</li>
+          <li>MTEJA NA MDHAMINI WA MKOPO WAWE NA AKILI TIMAMU.</li>
+          <li>MTEJA AHAKIKISHE MAREJESHO YAKE KABLA HAJAONDOKA OFISINI.</li>
+          <li>WANACHAMA WA KIKUNDI WATAWAJIBIKA IWAPO MWANAKIKUNDI MMOJA HAJAREJESHA AU KUTOWEKA NA MKOPO.</li>
+        </ol>
+      </p>
+    </div>
+  </div>
+  
+
+  
+  <!-- TAMKO LA MDHAMINI -->
+  <div class="form-section">
+    <h3>TAMKO LA MDHAMINI</h3>
+    <div class="form-group">
+      <label for="guarantor_name">Mimi</label>
+      <input type="text" id="guarantor_name" name="guarantor_name" required>
+    </div>
+    <div class="form-group">
+      <p>
+        Nikiwa na akili timamu nimekubali kumdhamini ndugu
+        <input type="text" id="guarantor_declaration_relationship" name="guarantor_declaration_relationship" required>
+        na nitakuwa tayari kulipa deni lake endapo mkopaji atashindwa kurejesha kiasi cha mkopo.
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="guarantor_declaration_signature">Sahihi/ Dole gumba</label>
+      <input type="text" id="guarantor_declaration_signature" name="guarantor_declaration_signature" required>
+    </div>
+  </div>
+  
+  <!-- KWA MATUMIZI YA OFISI TU -->
+  <div class="form-section">
+    <h3>KWA MATUMIZI YA OFISI TU</h3>
+    <div class="form-group">
+      <label for="recommendation">Inapendekezwa mwombaji APEWE/ ASIPEWE mkopo alioomba.</label>
+      <textarea id="recommendation" name="recommendation" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="reason">Sababu</label>
+      <textarea id="reason" name="reason" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="loan_officer_name">Jina la Afisa Mkopo</label>
+      <input type="text" id="loan_officer_name" name="loan_officer_name" required>
+    </div>
+    <div class="form-group">
+      <label for="loan_officer_signature">Sahihi ya Afisa Mkopo</label>
+      <input type="text" id="loan_officer_signature" name="loan_officer_signature" required>
+    </div>
+    <div class="form-group">
+      <label for="loan_officer_date">Tarehe ya Afisa Mkopo</label>
+      <input type="date" id="loan_officer_date" name="loan_officer_date" required>
+    </div>
+  </div>
+  
+  <!-- MSIMAMIZI WA MKOPO -->
+  <div class="form-section">
+    <h3>MSIMAMIZI WA MKOPO</h3>
+    <div class="form-group">
+      <label for="supervisor_name">Jina la Msimamizi</label>
+      <input type="text" id="supervisor_name" name="supervisor_name" required>
+    </div>
+    <div class="form-group">
+      <label for="supervisor_signature">Sahihi ya Msimamizi</label>
+      <input type="text" id="supervisor_signature" name="supervisor_signature" required>
+    </div>
+    <div class="form-group">
+      <label for="supervisor_date">Tarehe ya Msimamizi</label>
+      <input type="date" id="supervisor_date" name="supervisor_date" required>
+    </div>
+  </div>
+  
+  <!-- MENEJA WA TAWI -->
+  <div class="form-section">
+    <h3>IMEIDHINISHWA NA MENEJA WA TAWI</h3>
+    <div class="form-group">
+      <label for="manager_name">Jina la Meneja</label>
+      <input type="text" id="manager_name" name="manager_name" required>
+    </div>
+    <div class="form-group">
+      <label for="manager_signature">Sahihi ya Meneja</label>
+      <input type="text" id="manager_signature" name="manager_signature" required>
+    </div>
+    <div class="form-group">
+      <label for="manager_date">Tarehe ya Meneja</label>
+      <input type="date" id="manager_date" name="manager_date" required>
+    </div>
+  </div>
+  
+  <!-- Submit Button -->
+  <div class="form-group">
+    <input type="submit" value="Wasilisha" onclick="submitForm()">
+  </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the input fields
+    const fullNameInput = document.getElementById('full_name'); // Main full_name field
+    const borrowerNameInput = document.getElementById('borrower_name'); // TAMKO LA MKOPAJI
+    const mkopoFullNameInput = document.querySelector('#mkataba_wa_mkopo [name="full_name"]'); // MKATABA WA MKOPO
+    const spouseGuarantorRelationshipInput = document.getElementById('spouse_guarantor_relationship'); // UDHAMINI WA MUME/ MKE AU NDUGU
+
+    // Add an event listener to the full_name input field
+    fullNameInput.addEventListener('input', function () {
+        const fullName = fullNameInput.value;
+
+        // Automatically fill the borrower_name field
+        if (borrowerNameInput) {
+            borrowerNameInput.value = fullName;
+        }
+
+        // Automatically fill the full_name field under "MKATABA WA MKOPO"
+        if (mkopoFullNameInput) {
+            mkopoFullNameInput.value = fullName;
+        }
+
+        // Automatically fill the spouse_guarantor_relationship field
+        if (spouseGuarantorRelationshipInput) {
+            spouseGuarantorRelationshipInput.value = fullName;
+        }
+    });
+});
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the input fields
+    const loanAmountInput = document.getElementById('loan_amount');
+    const loanDurationInput = document.getElementById('loan_duration');
+    const loanInterestRateInput = document.getElementById('loan_interest_rate');
+    const totalLoanAmountInput = document.getElementById('total_loan_amount');
+    const repaymentStartDateInput = document.getElementById('repayment_start_date');
+    const repaymentEndDateInput = document.getElementById('repayment_end_date');
+
+    // Validate "Namba ya" field (assuming it's the phone number field)
+    const phoneNumberInput = document.getElementById('phone_number');
+    phoneNumberInput.addEventListener('input', function () {
+        if (this.value.length > 25) {
+            this.classList.add('error');
+            alert('Namba ya simu haipaswi kuzidi herufi 25.');
+        } else {
+            this.classList.remove('error');
+        }
+    });
+
+    // Calculate interest and total loan amount when loan amount or duration changes
+    loanAmountInput.addEventListener('input', calculateLoanDetails);
+    loanDurationInput.addEventListener('input', calculateLoanDetails);
+
+    // Calculate end date when start date or duration changes
+    repaymentStartDateInput.addEventListener('change', calculateEndDate);
+    loanDurationInput.addEventListener('input', calculateEndDate);
+
+    function calculateLoanDetails() {
+        const loanAmount = parseFloat(loanAmountInput.value) || 0;
+        const loanDuration = parseFloat(loanDurationInput.value) || 0;
+
+        // Calculate daily interest (1% of loan amount)
+        const dailyInterest = loanAmount * 0.01;
+        loanInterestRateInput.value = dailyInterest.toFixed(2);
+
+        // Calculate total loan amount (loan amount + (daily interest * number of days))
+        const totalLoanAmount = loanAmount + (dailyInterest * loanDuration);
+        totalLoanAmountInput.value = totalLoanAmount.toFixed(2);
+    }
+
+    function calculateEndDate() {
+        const startDate = new Date(repaymentStartDateInput.value);
+        const loanDuration = parseFloat(loanDurationInput.value) || 0;
+
+        if (!isNaN(startDate.getTime()) && loanDuration > 0) {
+            // Calculate end date by adding loan duration (in days) to start date
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + loanDuration);
+
+            // Format the end date as YYYY-MM-DD
+            const formattedEndDate = endDate.toISOString().split('T')[0];
+            repaymentEndDateInput.value = formattedEndDate;
+        } else {
+            repaymentEndDateInput.value = '';
+        }
+    }
+});
+
+async function submitForm() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'flex';
+
+    const formData = new FormData();
+
+    // Add image files to FormData
+    const borrowerImageFile = document.getElementById('passport_mkopaji').files[0];
+    const guarantorImageFile = document.getElementById('passport_mdhamini').files[0];
+    const localLeaderStampFile = document.getElementById('local_leader_stamp').files[0];
+
+    if (borrowerImageFile) formData.append('passport_mkopaji', borrowerImageFile);
+    if (guarantorImageFile) formData.append('passport_mdhamini', guarantorImageFile);
+    if (localLeaderStampFile) formData.append('local_leader_stamp', localLeaderStampFile);
+
+    // Prepare loan data
+    const loanData = {
+        applicant_details: {
+            full_name: document.getElementById('full_name').value,
+            nida_number: document.getElementById('nida_number').value,
+            residence_address: document.getElementById('residence_address').value,
+            street: document.getElementById('street').value,
+            ward: document.getElementById('ward').value,
+            district: document.getElementById('district').value,
+            region: document.getElementById('region').value,
+            marital_status: document.getElementById('marital_status').value,
+            phone_number: document.getElementById('phone_number').value,
+            occupation: document.getElementById('occupation').value,
+            workplace: document.getElementById('workplace').value,
+            workplace_street: document.getElementById('workplace_street').value,
+            workplace_ward: document.getElementById('workplace_ward').value,
+            workplace_district: document.getElementById('workplace_district').value,
+            workplace_region: document.getElementById('workplace_region').value,
+            house_number: document.getElementById('house_number').value,
+            number_of_children: document.getElementById('number_of_children').value,
+        },
+        guarantor_details: {
+            name: document.getElementById('guarantor_name').value,
+            residence_address: document.getElementById('guarantor_residence_address').value,
+            street: document.getElementById('guarantor_street').value,
+            ward: document.getElementById('guarantor_ward').value,
+            district: document.getElementById('guarantor_district').value,
+            region: document.getElementById('guarantor_region').value,
+            marital_status: document.getElementById('guarantor_marital_status').value,
+            phone_number: document.getElementById('guarantor_phone').value,
+            occupation: document.getElementById('guarantor_occupation').value,
+            workplace: document.getElementById('guarantor_workplace').value,
+            workplace_street: document.getElementById('guarantor_workplace_street').value,
+            workplace_ward: document.getElementById('guarantor_workplace_ward').value,
+            workplace_district: document.getElementById('guarantor_workplace_district').value,
+            workplace_region: document.getElementById('guarantor_workplace_region').value,
+            house_number: document.getElementById('guarantor_house_number').value,
+            signature: document.getElementById('guarantor_signature').value,
+        },
+        local_leader_details: {
+            name: document.getElementById('local_leader_name').value,
+            street: document.getElementById('local_leader_street').value,
+            ward: document.getElementById('local_leader_ward').value,
+            contact: document.getElementById('local_leader_contact').value,
+            signature: document.getElementById('local_leader_signature').value,
+        },
+        borrower_declaration: {
+            borrower_name: document.getElementById('full_name').value,
+            officer_name: document.getElementById('officer_name').value,
+            officer_signature: document.getElementById('officer_signature').value,
+            visit_date: document.getElementById('visit_date').value,
+        },
+        loan_details: {
+            amount: document.getElementById('loan_amount').value,
+            duration: document.getElementById('loan_duration').value,
+            interest_rate: document.getElementById('loan_interest_rate').value,
+            total_loan_amount: document.getElementById('total_loan_amount').value, // Add total loan amount
+            repayment_start_date: document.getElementById('repayment_start_date').value,
+            repayment_end_date: document.getElementById('repayment_end_date').value,
+        },
+        collateral: {
+            description: document.getElementById('collateral_description').value,
+            items: [
+                {
+                    item: document.getElementById('collateral_item_1').value,
+                    value: document.getElementById('collateral_value_1').value,
+                },
+                {
+                    item: document.getElementById('collateral_item_2').value || null,
+                    value: document.getElementById('collateral_value_2').value || null,
+                },
+                {
+                    item: document.getElementById('collateral_item_3').value || null,
+                    value: document.getElementById('collateral_value_3').value || null,
+                },
+                {
+                    item: document.getElementById('collateral_item_4').value || null,
+                    value: document.getElementById('collateral_value_4').value || null,
+                },
+            ].filter((item) => item.item || item.value),
+        },
+        approval_details: {
+            recommendation: document.getElementById('recommendation').value,
+            reason: document.getElementById('reason').value,
+            loan_officer_name: document.getElementById('loan_officer_name').value,
+            loan_officer_signature: document.getElementById('loan_officer_signature').value,
+            loan_officer_date: document.getElementById('loan_officer_date').value,
+            supervisor_name: document.getElementById('supervisor_name').value,
+            supervisor_signature: document.getElementById('supervisor_signature').value,
+            supervisor_date: document.getElementById('supervisor_date').value,
+            manager_name: document.getElementById('manager_name').value,
+            manager_signature: document.getElementById('manager_signature').value,
+            manager_date: document.getElementById('manager_date').value,
+        },
+        // Udhamini wa Mume/Mke au Ndugu
+        spouse_guarantor_details: {
+            spouse_guarantor_name: document.getElementById('spouse_guarantor_name').value,
+            spouse_guarantor_relationship: document.getElementById('spouse_guarantor_relationship').value,
+            spouse_guarantor_signature: document.getElementById('spouse_guarantor_signature').value,
+            guarantor_name: document.getElementById('guarantor_name').value,
+            guarantor_gender: document.getElementById('guarantor_gender').value,
+            guarantor_residence: document.getElementById('guarantor_residence').value,
+            guarantor_phone: document.getElementById('guarantor_phone').value,
+            guarantor_relationship: document.getElementById('guarantor_relationship').value,
+            guarantor_residence_address: document.getElementById('guarantor_residence_address').value,
+            guarantor_collateral: document.getElementById('guarantor_collateral').value,
+            guarantor_signature_thumbprint: document.getElementById('guarantor_signature_thumbprint').value,
+        },
+    };
+
+    // Append loan data as JSON to FormData
+    formData.append('loan_data', JSON.stringify(loanData));
+
+    try {
+        const response = await fetch('https://loan-management-system-jf05.onrender.com/loan-application', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token') || ''}`,
+            },
+            body: formData,
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            alert('Ombi la mkopo limewasilishwa kikamilifu!');
+            console.log('Server response:', responseData);
+        } else {
+            const errorData = await response.text();
+            alert(`Kushindwa kwasilisha fomu: ${errorData}`);
+            console.error('Error response:', errorData);
+        }
+    } catch (error) {
+        console.error('Kosa:', error);
+        alert('Kosa limetokea wakati wa kwasilisha fomu.');
+    } finally {
+        // Hide loading UI
+        loadingOverlay.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const loanId = urlParams.get('id');
+
+    if (loanId) {
+        await fetchLoanApplicationDetails(loanId);
+    }
+});
+
+async function fetchLoanApplicationDetails(loanId) {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'flex';
+
+    try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            throw new Error('Unauthorized. Please log in.');
+        }
+
+        const response = await fetch(`https://loan-management-system-jf05.onrender.com/loan-applications/${loanId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch loan application details');
+        }
+
+        const loanData = await response.json();
+        // Removed the call to populateFormFields
+    } catch (error) {
+        console.error('Error fetching loan application:', error);
+        alert(error.message);
+    } finally {
+        loadingOverlay.style.display = 'none';
+    }
+}
+  </script>
+</body>
+</html>

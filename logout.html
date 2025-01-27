@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Precious Investment Co. Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/logout.css">
+</head>
+<body>
+    <div class="logout-message">
+        <p>Logging out...</p>
+    </div>
+
+    <script>
+        // Clear localStorage (or sessionStorage) on the client side
+        localStorage.removeItem('access_token'); // Remove the access token
+        localStorage.removeItem('username'); // Remove the username
+
+        // Redirect the user to the login page
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000); // Redirect after 2 seconds
+    </script>
+</body>
+</html>

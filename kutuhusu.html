@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kutuhusu - Precious Investment Co. Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/kutuhusu.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+             <!-- Logo -->
+             <div class="logo">
+                <div class="main-text">Precious</div>
+                <div class="established">IFAKARA 2025</div>
+                <div class="sub-text">Company Limited</div>
+            </div>
+            <h3>Menyu Kuu</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Dashibodi</a></li>
+                <li><a href="taarifa.html"><i class="fas fa-user-friends"></i> Taarifa</a></li>
+                <li><a href="kutuhusu.html" class="active"><i class="fas fa-info-circle"></i> Kutuhusu</a></li>
+                <li><a href="register.html"><i class="fas fa-user-plus"></i> Jisajili</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Kuhusu Sisi</h1>
+                <p>Karibu kwenye Precious Investment Co. Ltd, mshirika wako wa kuaminika katika huduma za mikopo na fedha.</p>
+                <p>Jina lako: <strong id="username"></strong></p>
+            </div>
+
+            <!-- Original Cards Layout -->
+            <div class="card">
+                <h2>Muhtasari wa Kampuni</h2>
+                <p>Precious Investment Co. Ltd ni taasisi inayoongoza katika kutoa huduma za mikopo kwa watu binafsi, biashara, na jamii. Tumejizatiti kutoa huduma za mikopo ambazo ni rahisi, salama, na wazi kwa masharti. Dhamira yetu ni kuhimiza watu kwa kutoa msaada wa kifedha unaopatikana kwa ajili ya ukuaji binafsi na biashara.</p>
+            </div>
+
+            <div class="card">
+                <h2>Maelezo ya Kampuni</h2>
+                <ul>
+                    <li><strong>Jina la Kampuni:</strong> Precious Investment Co. Ltd</li>
+                    <li><strong>Anwani ya Mawasiliano:</strong> P.O. Box 616, Morogoro – Tawi la Ifakara</li>
+                    <li><strong>Nambari ya Simu:</strong> 0746-667797</li>
+                    <li><strong>Mahali Panafanyia kazi:</strong> Morogoro – Ifakara</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Dhamira Yetu</h2>
+                <p>Dhamira yetu ni kutoa suluhisho za kifedha kwa watu binafsi, wamiliki wa biashara, na familia zinazohitaji msaada, tukiwa na lengo kuu la maendeleo ya jamii. Tunataka kujenga uhusiano wa muda mrefu na wateja wetu kupitia uaminifu na uwazi.</p>
+            </div>
+
+            <div class="card">
+                <h2>Maono Yetu</h2>
+                <p>Maono yetu ni kuwa taasisi ya kifedha inayoongoza nchini Tanzania, kutoa suluhisho za mikopo zenye ubunifu na zinazopatikana kwa kila hatua ya maisha na biashara.</p>
+            </div>
+
+            <div class="card">
+                <h2>Thamani Zetu</h2>
+                <ul>
+                    <li><strong>Uaminifu:</strong> Tunafanya kazi kwa uaminifu na tunashikilia viwango vya juu vya maadili.</li>
+                    <li><strong>Uwazi:</strong> Tunahakikisha wateja wetu wanaelewa masharti yote kabla ya kuendelea na makubaliano yoyote ya kifedha.</li>
+                    <li><strong>Kuwezesha:</strong> Tunaamini katika kuwawezesha wateja wetu kufikia uhuru wa kifedha.</li>
+                    <li><strong>Kuwajali Wateja:</strong> Mahitaji ya wateja wetu yako katikati ya shughuli zetu, na tunajitahidi kutoa huduma ya kibinafsi.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Maelezo ya Mawasiliano</h2>
+                <p>Kama unahitaji maswali au unataka kuomba mkopo, tafadhali wasiliana nasi kupitia maelezo ya chini:</p>
+                <ul>
+                    <li><strong>Simu:</strong> 0746-667797</li>
+                    <li><strong>Barua pepe:</strong> info@preciousinvestment.co.tz</li>
+                    <li><strong>Anwani ya Ofisi:</strong> Morogoro – Tawi la Ifakara</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Precious Investment Co. Ltd. Haki Zote Zimehifadhiwa.</p>
+    </footer>
+
+    <script>
+        // Check if the user is logged in
+        const accessToken = localStorage.getItem('access_token');
+        const username = localStorage.getItem('username');
+
+        if (!accessToken || !username) {
+            // Redirect to login page if not logged in
+            window.location.href = 'login.html';
+        } else {
+            // Display the username
+            document.getElementById('username').textContent = username;
+        }
+
+        // Logout functionality
+        document.getElementById('logout-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

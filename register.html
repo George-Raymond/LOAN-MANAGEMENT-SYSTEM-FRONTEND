@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jisajili - Precious Investment Co. Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/register.css">
+    <style>
+        /* Loading spinner styles */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+        .loading-spinner .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        Karibu Precious Investment Co. Ltd
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div id="register">
+            <div class="register-box">
+                <form id="registerForm" onsubmit="submitForm(event)">
+                    <h2>Jisajili</h2>
+                    <div id="error-message" style="color: red;"></div>
+                    <div class="input-box">
+                        <input type="text" name="username" id="username" required placeholder=" ">
+                        <label for="username">Jina la Mtumiaji</label>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" name="password" id="password" required placeholder=" ">
+                        <label for="password">Nenosiri</label>
+                    </div>
+                    <button type="submit" class="btn">Jisajili</button>
+                    <div class="signup-link">
+                        <p>Tayari una akaunti? <a href="login.html">Ingia</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Precious Investment Co. Ltd. Haki Zote Zimehifadhiwa.</p>
+    </footer>
+
+    <!-- Loading Spinner and Overlay -->
+    <div class="overlay" id="overlay"></div>
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        // Generate a CSRF token (client-side)
+        function generateCsrfToken() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+
+        // Handle form submission
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validate inputs
+            if (username.trim() === '' || password.trim() === '') {
+                document.getElementById('error-message').textContent = 'Tafadhali jaza sehemu zote zinazohitajika.';
+                return;
+            }
+
+            // Show loading spinner and overlay
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+
+            // Generate CSRF token
+            const csrfToken = generateCsrfToken();
+
+            // Send data to FastAPI backend
+            try {
+                const response = await fetch('https://loan-management-system-jf05.onrender.com/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrfToken
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Redirect to login page on success
+                    window.location.href = 'login.html';
+                } else {
+                    // Display error message
+                    document.getElementById('error-message').textContent = data.detail || 'Kuna tatizo la kiufundi. Tafadhali jaribu tena.';
+                }
+            } catch (error) {
+                document.getElementById('error-message').textContent = 'Kuna tatizo la kiufundi. Tafadhali jaribu tena.';
+            } finally {
+                // Hide loading spinner and overlay
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashibodi - Precious Investment Co. Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Logo -->
+            <div class="logo">
+                <div class="main-text">Precious</div>
+                <div class="established">IFAKARA 2025</div>
+                <div class="sub-text">Company Limited</div>
+            </div>
+
+            <!-- Menu -->
+            <h3>Menyu Kuu</h3>
+            <ul>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Dashibodi</a></li>
+                <li><a href="taarifa.html"><i class="fas fa-info-circle"></i> Taarifa</a></li>
+                <li><a href="kutuhusu.html"><i class="fas fa-users"></i> Kutuhusu</a></li>
+                <li><a href="register.html"><i class="fas fa-user-plus"></i> Jisajili</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="fetch_clients.html"><i class="fas fa-users"></i> Wateja</a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1>Karibu Precious Company Limited</h1>
+                <p>Pata mkopo kwa urahisi na masharti rahisi. Tunawezesha maisha yako kwa mikopo salama na ya haraka.</p>
+                <a href="fetch_clients.html" class="button">Angalia Wateja</a>
+            </div>
+
+            <!-- Image Section -->
+            <div class="image-section">
+                <a href="kutuhusu.html">
+                    <img src="images/image1.png" alt="Kutuhusu">
+                    <p>Kutuhusu</p>
+                </a>
+                <a href="taarifa.html">
+                    <img src="images/image2.png" alt="Taarifa">
+                    <p>Taarifa</p>
+                </a>
+                <a href="jisajili.html">
+                    <img src="images/image3.png" alt="Jisajili">
+                    <p>Jisajili</p>
+                </a>
+                <a href="login.html">
+                    <img src="images/image4.png" alt="Login">
+                    <p>Login</p>
+                </a>
+            </div>
+
+            <!-- Additional Phrases Section -->
+            <div class="card">
+                <h2>Kuhusu Huduma Zetu</h2>
+                <p>Precious Investment Co. Ltd inatoa mikopo kwa watu binafsi na biashara kwa masharti rahisi na ya wazi. Tunakusudia kukuwezesha kufanikisha malengo yako kwa kutoa mikopo salama na ya haraka.</p>
+                <ul>
+                    <li><strong>Mikopo ya Biashara:</strong> Pata mkopo wa kuanzisha au kukuza biashara yako.</li>
+                    <li><strong>Mikopo ya Kijamii:</strong> Tuna mikopo maalum kwa ajili ya maendeleo ya jamii.</li>
+                    <li><strong>Masharti Rahisi:</strong> Hakikisha unakidhi masharti yetu ya msingi na uwe na dhamana.</li>
+                </ul>
+            </div>
+
+            <!-- Masharti ya Mkopo Section -->
+            <div class="card">
+                <h2>Masharti ya Mkopo</h2>
+                <button class="accordion">Bofya hapa kuona masharti ya mkopo</button>
+                <div class="panel">
+                    <ul>
+                        <li>MTEJA ATATAKIWA KUWA NA KITAMBULISHO CHA KUPIGA KURA NA PASSPORT SIZE MOJA.</li>
+                        <li>MKATABA WA MKOPO UTAVUNJIKA BAADA YA SIKU MBILI KUTOREJESHWA KIASI CHA MKOPO KILICHOKUBALIWA AMBAPO DHAMANA ZILIZOWEKWA ZITACHUKULIWA KUFIDIA DENI LA MKOPO.</li>
+                        <li>MUDA WA MAREJESHO NI KUANZIA SAA 3:00 ASUBUHI HADI SAA 10:00 JIONI.</li>
+                        <li>MAREJESHO YAKICHELEWESHWA KUFIKA OFISINI KWA MUDA HUSIKA FAINI NI TSHS. 2,000/= (ELFU MBILI TU).</li>
+                        <li>MTEJA NA MDHAMINI WA MKOPO WAWE NA AKILI TIMAMU.</li>
+                        <li>MTEJA AHAKIKISHE MAREJESHO YAKE KABLA HAJAONDOKA OFISINI.</li>
+                        <li>WANACHAMA WA KIKUNDI WATAWAJIBIKA IWAPO MWANAKIKUNDI MMOJA HAJAREJESHA AU KUTOWEKA NA MKOPO.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Email Section -->
+    <div class="contact-email">
+        <p>Wasiliana nasi kupitia Email: <a href="mailto:mgayaedwin95@gmail.com">mgayaedwin95@gmail.com</a></p>
+        <p>P.O. BOX 616, MOROGORO – IFAKARA BRANCH</p>
+        <p>PHONE NO. 0746-667797</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Precious Investment Co. Ltd. Haki Zote Zimehifadhiwa.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Accordion Functionality
+        const accordion = document.querySelector(".accordion");
+        const panel = document.querySelector(".panel");
+
+        accordion.addEventListener("click", function () {
+            this.classList.toggle("active");
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+
+        // Highlight Active Link in Sidebar
+        const currentPage = window.location.pathname.split("/").pop();
+        const links = document.querySelectorAll(".sidebar ul li a");
+
+        links.forEach(link => {
+            if (link.getAttribute("href") === currentPage) {
+                link.classList.add("active");
+            }
+        });
+    </script>
+</body>
+</html>
